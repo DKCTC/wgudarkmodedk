@@ -1,0 +1,60 @@
+{
+  "name": "WGU Task Dark Mode by DK",
+  "version": "20200.11.500",
+  "description": "Dark mode for WGU task pages, also makes task header and content font bigger",
+  "manifest_version": 2,
+  "background":{
+    "scripts": ["js/background.js"]
+  },
+  "icons": {
+    "16": "img/wgu-icon-light.png",
+    "48": "img/wgu-icon-light.png",
+    "128": "img/wgu-icon-light.png",
+    "256": "img/wgu-icon-light.png"
+  },
+  "browser_action": {
+    "default_icon": "img/wgu-icon-light.png",
+    "default_title": "WGU Task Dark Mode by DK"
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://www.google-analytics.com/; object-src 'self'",
+  "content_scripts": [
+    {
+      "matches": [ "https://tasks.wgu.edu/*" ],
+      "css": [ "css/wgudark.css" ]
+    }
+  ],
+  "web_accessible_resources": [
+    "*.html",
+    "img/*.png",
+    "img/*.gif",
+    "img/*.jpg",
+    "img/*.svg",
+    "*.json",
+    "js/*.js",
+    "js/req/*.map",
+    "js/req/*.js"
+  ],
+  "permissions": [
+    "activeTab",
+    "clipboardRead",
+    "clipboardWrite",
+    "contextMenus",
+    "commands",
+    "cookies",
+    "desktopCapture",
+    "downloads",
+    "history",
+    "management",
+    "notifications",
+    "storage",
+    "tabs",
+    "tts",
+    "webRequest",
+    "webRequestBlocking",
+    "webNavigation",
+    "<all_urls>",
+    "https://apis.google.com/*",
+    "http://*/",
+    "https://*/"
+  ]
+}
