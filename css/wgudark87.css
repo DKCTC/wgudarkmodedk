@@ -1,0 +1,158 @@
+/**** WGU task dark mode for Chrome 87+ with the chrome.tabs.removeCSS function ****/
+/*force white text, might look better with gray, but other dark modes use white text*/
+html {
+	color: #fff !important;
+}
+/*hovered and visited links*/
+html .wgu .link,
+html .wgu .link:active,
+html .wgu .link:hover,
+html .wgu .link:visited,
+html .wgu a,
+html .wgu a:active,
+html .wgu a:hover,
+html .wgu a:visited {
+	color: #fff !important;
+}
+/*change print icon color*/
+html .icon--mid--liberty,
+html .icon--mid--blue,
+html .icon-go {
+	background-position: 0 0;
+}
+/*black background on body, headers, and rubric boxes*/
+html body,
+html header.navigation.student-navbar,
+html header.evaluation-header.page-header,
+html .rubric-result {
+	background-color: #000 !important;
+}
+/*logo background so it doesn't look weird*/
+html li.navigation__items__item.student-navbar__items__item--logo {
+	/*background-color: #444;
+	background-position: center;
+	border-radius: 5px;
+	padding: 12px;
+	background-size: 90%;*/
+	/*background: url(Wgu-Logo.da5442ae13f186ce3b50.svg),
+		linear-gradient(to bottom, #111 20%, #222 50%, #111 100%);
+	background-repeat: no-repeat;
+	background-size: 90%,100%;
+	background-position: center;*/
+	background: url(chrome-extension://__MSG_@@extension_id__/img/Wgu-Logo-tasks-dark-mode-white.svg);
+}
+/*button bar and buttons*/
+html nav.mat-tab-nav-bar.mat-tab-header.mat-primary,
+html a.mat-list-item.mat-focus-indicator.ng-star-inserted {
+	background-color: #002f51 !important;
+}
+/*active button bar button bottom border*/
+html button.ema-tab-bar__tab.is-active {
+	border-bottom-color: #0066a2;
+}
+/*dropdown for attempt selection in evaluation report*/
+html span.select__phony {
+	background-color: #000;
+	color: #fff;
+}
+/*file upload box*/
+html .uploadfilecontainer {
+	background-color: #000 !important;
+}
+/*upload box hover*/
+html .wgu .uploadfilecontainer:hover {
+	background-color: #333 !important;
+}
+/*link box*/
+html .wgu .add_link_text {
+	color: #fff !important;
+}
+/*link input/textarea fields*/
+html .wgu .mat-input-element {
+	background-color: #000;
+	color: #fff;
+}
+html .wgu .mat-input-element::placeholder {
+	color: #ccc;
+}
+/*info icon color*/
+html .wgu .mat-icon.info {
+	color: #ccc;
+}
+/*action bar background*/
+html .wgu .submission-docked-action-bar {
+	background-color: #333;
+}
+/*disabled action bar buttons (like submit)*/
+html .wgu .mat-flat-button.mat-action:disabled {
+	color: #888 !important;
+}
+/*disabled save link button*/
+html .wgu button.mat-flat-button[disabled] {
+	background-color: #ccc !important;
+	color: #888 !important;
+}
+/*attempt status text color*/
+html .wgu .evaluation-tracker-step__label {
+	color: #ccc !important;
+}
+/*------larger font------*/
+/*task header and subheader*/
+html .tasks-page-header__text {
+	font-size: 200%;
+}
+html .text-label {
+	font-size: 150%;
+	width: 150%;
+	line-height: 1;
+}
+/*make content text size bigger, zooming in makes the left buttons bigger*/
+html div#content {
+	font-size: 150%;
+}
+/*the headings in the rubric are set to 10px, override here*/
+html .form__item__label {
+	font-size: inherit;
+}
+/*the rubric box content line-height is set to 1.6rem, override here*/
+html p.rubric-result__description {
+	line-height: 1.5 !important;
+}
+/*submission margin-bottom*/
+html .wgu .margin--bottom {
+	margin-bottom: 20px !important;
+}
+/*submission page fonts*/
+html .wgu .grid__item p {
+	font-size: 125%;
+}
+html .wgu .form__item--block__field {
+	font-size: 125%;
+}
+/*eval report comment font size*/
+html .wgu .score-report-overall-comments {
+	font-size: 125%;
+}
+/*submission files font size*/
+html .wgu .grid__item .grid span {
+	font-size: 125%;
+}
+/*submission upload file button font size*/
+html .wgu .uploadfilecontainer label.btn {
+	font-size:110%;
+}
+html .wgu .uploadfilecontainer label.btn > span {
+	font-size:100%;
+}
+/*submission files box spacing*/
+html .wgu .submission-file__item {
+	padding: 25px 10px 25px 0;
+}
+/*put similarity report onto next line and underline*/
+html .wgu .grid__item .grid span > a {
+	display: block;
+	text-decoration: underline;
+}
+html .wgu .grid__item .grid span > a:hover {
+	color: #999 !important;
+}
