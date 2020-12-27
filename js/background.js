@@ -160,13 +160,16 @@ chrome.browserAction.onClicked.addListener(function(activeTab){
 
 //on tab navigate only for wgu task tabs
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, _tab) {
+	//reset regexp lastIndex so it will actually work
+	taskURL.regexp.lastIndex = 0;
+	//if this is a WGU task tab and it's done loading, executeToggle
 	if(!!(taskURL.regexp).test(_tab.url) && changeInfo.status == 'complete'){
 		cLog('=========onUpdatedTab tabId: '+tabId,changeInfo);
 		cLog('-_tab:',_tab);
 		//toggle darkmode, executeToggle is expecting an array of tabs
 		executeToggle([_tab],!!enabled.darkmode,false);
 		//toggle largefont
-		executeToggle([_tab],!!enabled.largefont,true);
+		executeToggle([_tab],!!enabled.largefont,true);	
 	}//if
 });
 	
