@@ -1,34 +1,34 @@
 /**** WGU task dark mode for Chrome 86- WITHOUT the chrome.tabs.removeCSS function ****/
 /*force white text, might look better with gray, but other dark modes use white text*/
-html.wgudmdk.dark-mode {
+html.dk-dark-mode {
 	color: #fff !important;
 }
 /*hovered and visited links*/
-html.wgudmdk.dark-mode .wgu .link,
-html.wgudmdk.dark-mode .wgu .link:active,
-html.wgudmdk.dark-mode .wgu .link:hover,
-html.wgudmdk.dark-mode .wgu .link:visited,
-html.wgudmdk.dark-mode .wgu a,
-html.wgudmdk.dark-mode .wgu a:active,
-html.wgudmdk.dark-mode .wgu a:hover,
-html.wgudmdk.dark-mode .wgu a:visited {
+html.dk-dark-mode .wgu .link,
+html.dk-dark-mode .wgu .link:active,
+html.dk-dark-mode .wgu .link:hover,
+html.dk-dark-mode .wgu .link:visited,
+html.dk-dark-mode .wgu a,
+html.dk-dark-mode .wgu a:active,
+html.dk-dark-mode .wgu a:hover,
+html.dk-dark-mode .wgu a:visited {
 	color: #fff !important;
 }
 /*change print icon color*/
-html.wgudmdk.dark-mode .icon--mid--liberty,
-html.wgudmdk.dark-mode .icon--mid--blue,
-html.wgudmdk.dark-mode .icon-go {
+html.dk-dark-mode .icon--mid--liberty,
+html.dk-dark-mode .icon--mid--blue,
+html.dk-dark-mode .icon-go {
 	background-position: 0 0;
 }
 /*black background on body, headers, and rubric boxes*/
-html.wgudmdk.dark-mode body,
-html.wgudmdk.dark-mode header.navigation.student-navbar,
-html.wgudmdk.dark-mode header.evaluation-header.page-header,
-html.wgudmdk.dark-mode .rubric-result {
+html.dk-dark-mode body,
+html.dk-dark-mode header.navigation.student-navbar,
+html.dk-dark-mode header.evaluation-header.page-header,
+html.dk-dark-mode .rubric-result {
 	background-color: #000 !important;
 }
 /*logo background so it doesn't look weird*/
-html.wgudmdk.dark-mode li.navigation__items__item.student-navbar__items__item--logo {
+html.dk-dark-mode li.navigation__items__item.student-navbar__items__item--logo {
 	/*background-color: #444;
 	background-position: center;
 	border-radius: 5px;
@@ -42,117 +42,121 @@ html.wgudmdk.dark-mode li.navigation__items__item.student-navbar__items__item--l
 	background: url(chrome-extension://__MSG_@@extension_id__/img/Wgu-Logo-tasks-dark-mode-white.svg);
 }
 /*button bar and buttons*/
-html.wgudmdk.dark-mode nav.mat-tab-nav-bar.mat-tab-header.mat-primary,
-html.wgudmdk.dark-mode a.mat-list-item.mat-focus-indicator.ng-star-inserted {
+html.dk-dark-mode nav.mat-tab-nav-bar.mat-tab-header.mat-primary,
+html.dk-dark-mode a.mat-list-item.mat-focus-indicator.ng-star-inserted {
 	background-color: #002f51 !important;
 }
 /*active button bar button bottom border*/
-html.wgudmdk.dark-mode button.ema-tab-bar__tab.is-active {
+html.dk-dark-mode button.ema-tab-bar__tab.is-active {
 	border-bottom-color: #0066a2;
 }
 /*dropdown for attempt selection in evaluation report*/
-html.wgudmdk.dark-mode span.select__phony {
+html.dk-dark-mode span.select__phony {
 	background-color: #000;
 	color: #fff;
 }
 /*file upload box*/
-html.wgudmdk.dark-mode .uploadfilecontainer {
+html.dk-dark-mode .uploadfilecontainer {
 	background-color: #000 !important;
 }
 /*upload box hover*/
-html.wgudmdk.dark-mode .wgu .uploadfilecontainer:hover {
+html.dk-dark-mode .wgu .uploadfilecontainer:hover {
 	background-color: #333 !important;
 }
 /*link box*/
-html.wgudmdk.dark-mode .wgu .add_link_text {
+html.dk-dark-mode .wgu .add_link_text {
 	color: #fff !important;
 }
 /*link input/textarea fields*/
-html.wgudmdk.dark-mode .wgu .mat-input-element {
+html.dk-dark-mode .wgu .mat-input-element {
 	background-color: #000;
 	color: #fff;
 }
-html.wgudmdk.dark-mode .wgu .mat-input-element::placeholder {
+html.dk-dark-mode .wgu .mat-input-element::placeholder {
 	color: #ccc;
 }
 /*info icon color*/
-html.wgudmdk.dark-mode .wgu .mat-icon.info {
+html.dk-dark-mode .wgu .mat-icon.info {
 	color: #ccc;
 }
 /*action bar background*/
-html.wgudmdk.dark-mode .wgu .submission-docked-action-bar {
+html.dk-dark-mode .wgu .submission-docked-action-bar {
 	background-color: #333;
 }
 /*disabled action bar buttons (like submit)*/
-html.wgudmdk.dark-mode .wgu .mat-flat-button.mat-action:disabled {
+html.dk-dark-mode .wgu .mat-flat-button.mat-action:disabled {
 	color: #888 !important;
 }
 /*disabled save link button*/
-html.wgudmdk.dark-mode .wgu button.mat-flat-button[disabled] {
+html.dk-dark-mode .wgu button.mat-flat-button[disabled] {
     background-color: #ccc !important;
     color: #888 !important;
 }
 /*attempt status text color*/
-html.wgudmdk.dark-mode .wgu .evaluation-tracker-step__label {
+html.dk-dark-mode .wgu .evaluation-tracker-step__label {
     color: #ccc !important;
 }
 /*------larger font------*/
 /*task header and subheader*/
-html.wgudmdk.large-font .tasks-page-header__text {
+html.dk-large-font .tasks-page-header__text {
 	font-size: 200%;
 }
-html.wgudmdk.large-font .text-label {
+html.dk-large-font .text-label {
 	font-size: 150%;
 	width: 150%;
 	line-height: 1;
 }
 /*make content text size bigger, zooming in makes the left buttons bigger*/
-html.wgudmdk.large-font div#content {
+html.dk-large-font div#content {
 	font-size: 150%;
 }
 /*the headings in the rubric are set to 10px, override here*/
-html.wgudmdk.large-font .form__item__label {
+html.dk-large-font .form__item__label {
 	font-size: inherit;
 }
+/*menu bar font*/
+html.dk-large-font button.ema-tab-bar__tab {
+	font-size: 110%;
+}
 /*the rubric box content line-height is set to 1.6rem, override here*/
-html.wgudmdk.large-font p.rubric-result__description {
+html.dk-large-font p.rubric-result__description {
 	line-height: 1.5 !important;
 }
 /*submission margin-bottom*/
-html.wgudmdk.large-font .wgu .margin--bottom {
+html.dk-large-font .wgu .margin--bottom {
     margin-bottom: 20px !important;
 }
 /*submission page fonts*/
-html.wgudmdk.large-font .wgu .grid__item p {
+html.dk-large-font .wgu .grid__item p {
     font-size: 125%;
 }
-html.wgudmdk.large-font .wgu .form__item--block__field {
+html.dk-large-font .wgu .form__item--block__field {
     font-size: 125%;
 }
 /*eval report comment font size*/
-html.wgudmdk.large-font .wgu .score-report-overall-comments {
+html.dk-large-font .wgu .score-report-overall-comments {
     font-size: 125%;
 }
 /*submission files font size*/
-html.wgudmdk.large-font .wgu .grid__item .grid span {
+html.dk-large-font .wgu .grid__item .grid span {
     font-size: 125%;
 }
 /*submission upload file button font size*/
-html.wgudmdk.large-font .wgu .uploadfilecontainer label.btn {
+html.dk-large-font .wgu .uploadfilecontainer label.btn {
 	font-size:110%;
 }
-html.wgudmdk.large-font .wgu .uploadfilecontainer label.btn > span {
+html.dk-large-font .wgu .uploadfilecontainer label.btn > span {
 	font-size:100%;
 }
 /*submission files box spacing*/
-html.wgudmdk.large-font .wgu .submission-file__item {
+html.dk-large-font .wgu .submission-file__item {
     padding: 25px 10px 25px 0;
 }
 /*put similarity report onto next line and underline*/
-html.wgudmdk.large-font .wgu .grid__item .grid span > a {
+html.dk-large-font .wgu .grid__item .grid span > a {
     display: block;
     text-decoration: underline;
 }
-html.wgudmdk.large-font .wgu .grid__item .grid span > a:hover {
+html.dk-large-font .wgu .grid__item .grid span > a:hover {
 	color: #999 !important;
 }
