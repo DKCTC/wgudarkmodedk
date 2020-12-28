@@ -1,8 +1,10 @@
-//--------------------------------------------------
-//***** WGU Task Dark Mode by DK background.js *****
-//--------------------------------------------------
+//-----------------------------------------------------------------
+//***** WGU Task Dark Mode and Large Text by DK background.js *****
+//-----------------------------------------------------------------
 //the manifest
 var _manifest = chrome.runtime.getManifest(),
+	//the incoming port connection
+	connection = new Port(),	
 	//dev mode ext options, if true, dev mode ext reload context menu item will be added
 	development = false,
 	//WGU task page URLs
@@ -104,17 +106,31 @@ var _manifest = chrome.runtime.getManifest(),
 					cLog('--executeToggle SCRIPT css toggle: '+_tab.id);
 					//execute the script that toggles the classes on the html container
 					chrome.tabs.executeScript(_tab.id, {
-						//code:'["wgudmdk","large-font","dark-mode"].map(v=>document.getElementsByTagName("html")[0].classList.toggle(v));'
 						code:'document.getElementsByTagName("html")[0].classList.'
 							+((!!insert && 'add') || 'remove')+'("'
 								+classes[((!!font && 'largefont') || 'darkmode')]
 							+'");'
-
-					});//, function(resp){});
+					});
 				break;
 			}//switch
 		});//taskTabs.forEach
 	};//executeToggle
+
+//connection port message listener
+connection.addOnConnectListener({
+	//click event fron menu
+	'event': function (msg, sender, sendResponse) {
+		cLog('---menu input click:',msg);
+		preToggle(msg.font);
+		sendResponse({status:'success'});
+	}
+},{
+	init: function (port, _tabID, sendResponse) {
+		if(port.name == 'menu'){
+			sendResponse({ method: 'enabled', enabled:enabled });
+		}//if
+	}
+});
 
 //if this is the dev version, add the context menu item for reload for quick debug
 chrome.management.get(chrome.runtime.id,function(runData){
@@ -138,6 +154,7 @@ chrome.management.get(chrome.runtime.id,function(runData){
 				preToggle(true);
 			}
 		});
+	//if this is unpacked dev version, set development flag for console logging and reload ext context menu item
 	if(runData.installType == 'development'){
 		development = true;
 		cLog('---------background.js loaded: '+ _manifest.name +' | '+_manifest.version,_manifest);

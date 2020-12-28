@@ -29,16 +29,6 @@ html.dk-dark-mode .rubric-result {
 }
 /*logo background so it doesn't look weird*/
 html.dk-dark-mode li.navigation__items__item.student-navbar__items__item--logo {
-	/*background-color: #444;
-	background-position: center;
-	border-radius: 5px;
-	padding: 12px;
-	background-size: 90%;*/
-	/*background: url(Wgu-Logo.da5442ae13f186ce3b50.svg),
-		linear-gradient(to bottom, #111 20%, #222 50%, #111 100%);
-	background-repeat: no-repeat;
-	background-size: 90%,100%;
-	background-position: center;*/
 	background: url(chrome-extension://__MSG_@@extension_id__/img/Wgu-Logo-tasks-dark-mode-white.svg);
 }
 /*button bar and buttons*/
