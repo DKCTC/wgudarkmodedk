@@ -114,7 +114,26 @@ var _manifest = chrome.runtime.getManifest(),
 				break;
 			}//switch
 		});//taskTabs.forEach
-	};//executeToggle
+	},//executeToggle
+	//get the sync data on first launch or reload
+	firstLaunch = function(reload){
+		chrome.storage.sync.get(null,function(items){
+			cLog('-firstLaunch sync.get reload: '+!!reload+' | items:',items);
+			//set the enabled flag to the stored value
+			enabled = items.enabled || enabled;
+			//set the badge text for darkmode
+			chrome.browserAction.setBadgeText({text: ((!!enabled.darkmode && 'DARK') || 'LITE')});
+			//get the task tabs and execute the toggle
+			//-when the browser is first opened, there probably won't be any tabs, so this will not do anything anyway
+			chrome.tabs.query({url:taskURL.pattern},function(_tabs){
+				cLog('-update|install:',_tabs);
+				//toggle darkmode
+				executeToggle(_tabs,!!enabled.darkmode,false);
+				//toggle largefont
+				executeToggle(_tabs,!!enabled.largefont,true);
+			});//query
+		});//sync get
+	};//firstLaunch
 
 //connection port message listener
 connection.addOnConnectListener({
@@ -191,23 +210,14 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, _tab) {
 });
 	
 //after install/update, get enabled value and execute toggle
+//-this might not be necessary because I'm telling it to get the data on launch anyway
 chrome.runtime.onInstalled.addListener(function(details){
 	cLog('=========onInstalled:',details);
 	if((/(update|install)/gi).test(details.reason)){
-		chrome.storage.sync.get(null,function(items){
-			cLog('-sync.get items:',items);
-			//set the enabled flag to the stored value
-			enabled = items.enabled || {};
-			//set the badge text for darkmode
-			chrome.browserAction.setBadgeText({text: ((!!enabled.darkmode && 'DARK') || 'LITE')});
-			//get the task tabs and execute the toggle
-			chrome.tabs.query({url:taskURL.pattern},function(_tabs){
-				cLog('-update|install:',_tabs);
-				//toggle darkmode
-				executeToggle(_tabs,!!enabled.darkmode,false);
-				//toggle largefont
-				executeToggle(_tabs,!!enabled.largefont,true);
-			});//query
-		});//sync get
+		//send true because this is a reload, not really used except for logging
+		firstLaunch(true);
 	}//if
-});//
+});
+
+//get the sync data
+firstLaunch();
