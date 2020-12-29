@@ -119,7 +119,7 @@ var _manifest = chrome.runtime.getManifest(),
 //connection port message listener
 connection.addOnConnectListener({
 	//click event fron menu
-	'event': function (msg, sender, sendResponse) {
+	event: function (msg, sender, sendResponse) {
 		cLog('---menu input click:',msg);
 		preToggle(msg.font);
 		sendResponse({status:'success'});
@@ -171,9 +171,9 @@ chrome.management.get(chrome.runtime.id,function(runData){
 
 //on browseraction click, only toggle darkmode
 //-largefont is in the contextmenu for now because I don't feel like making a browseraction menu
-chrome.browserAction.onClicked.addListener(function(activeTab){
+/*chrome.browserAction.onClicked.addListener(function(activeTab){
 	preToggle(false);
-});
+});//*/
 
 //on tab navigate only for wgu task tabs
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, _tab) {
@@ -197,7 +197,7 @@ chrome.runtime.onInstalled.addListener(function(details){
 		chrome.storage.sync.get(null,function(items){
 			cLog('-sync.get items:',items);
 			//set the enabled flag to the stored value
-			enabled = items.enabled;
+			enabled = items.enabled || {};
 			//set the badge text for darkmode
 			chrome.browserAction.setBadgeText({text: ((!!enabled.darkmode && 'DARK') || 'LITE')});
 			//get the task tabs and execute the toggle

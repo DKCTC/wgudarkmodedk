@@ -1,0 +1,155 @@
+/*outer container and body*/
+html { height: 150px; }
+body {
+	height: 120px;
+	margin: 20px;
+	background-color: #fff;
+}
+body.darkmode {
+	background-color: #000;
+}
+/*containers*/
+body > section {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	position: relative;
+	text-align: center;
+	margin-bottom: 20px;
+}
+body > section > div {
+	display: inline-block;
+	width: 450px;
+	height: 30px;
+}
+/*WGU logos*/
+body > section > section {
+	position: relative;
+	width: 150px;
+	height: 34px;
+}
+body > section > section > img {
+	width: 150px;
+	position: relative;
+}
+body > section > section > img.darkmode {
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+}
+body > section > section > img:not(.darkmode),
+body.darkmode > section > section > img.darkmode {
+	opacity: 1;
+}
+body.darkmode > section > section > img:not(.darkmode) {
+	opacity: 0;
+}
+/*text label*/
+body > section > span {
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	text-align: center;
+	width: 220px;
+	font-family: arial,sans-serif;
+	text-transform: uppercase;
+	font-size: 18px;
+	font-weight: normal;
+	color: #002f51;
+	vertical-align: middle;
+}
+body.darkmode > section > span {
+	color: #fff;
+}
+body > section > span > span {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	font-size: 14px;
+	font-weight: bold;
+}
+body > section > span > span:last-child {
+	font-weight: normal;
+}
+/*buttons*/
+/*-styled similarly to the buttons on the task submission page*/
+body > section > div > button {
+	display: inline-flex;
+	justify-content: space-evenly;
+	align-items: center;
+	position: relative;
+	width: 190px;
+	height: 36px;
+	font-family: arial,sans-serif;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: normal;
+	background-color: #fff;
+	border: 1px solid #002f51;
+	padding: 0 0.83333em;
+	border-radius: 5px;
+	color: #002f51;
+	-webkit-tap-highlight-color: transparent;
+	cursor: pointer;
+	outline: none;
+	min-height: 2.33333em;
+	line-height: 2.33333em;
+	text-align: center;
+	text-decoration: none;
+}
+body.darkmode > section > div > button {
+	color: #fff;
+	background-color: #000;
+	border-color: #fff;
+}
+body > section > div > button:hover { background-color: #fff3db; }
+body.darkmode > section > div > button:hover { background-color: #555; }
+body > section > div > button:last-child { margin-left: 15px; }
+/*switch container*/
+body > section > div > button > span {
+	pointer-events: none;
+}
+body > section > div > button > span:last-child {
+	display: inline-block;
+	position: relative;
+	width: 50px;
+	height: 24px;
+	background-color: #ff0000;
+	border-radius: 50px;
+}
+body > section > div > button.enabled > span:last-child { background-color: #9cd08b; }
+/*switch slider*/
+body > section > div > button > span:last-child::after {
+	position: absolute;
+	content: "";
+	height: 24px;
+	width: 25px;
+	left: 0px;
+	bottom: 0px;
+	background-color: #002f51;
+	border-radius: 50%
+}
+body.darkmode > section > div > button > span:last-child::after {
+	background-color: #0066a2;
+}
+/*slide switch when enabled*/
+body > section > div > button.enabled > span:last-child::after {
+	transform: translateX(25px);
+}
+/*switch and darkmode color and opacity transitions for after menu is loaded*/
+/*switches that translate*/
+body.ready > section > div > button > span:last-child::after {
+	transition: 100ms linear;
+}
+/*body background, buttons, text, img*/
+body.ready,
+body.ready > section > span,
+body.ready > section > div > button,
+body.ready > section > div > button > span:last-child,
+body.ready > section > div > button:hover,
+body.ready > section > section > img {
+	transition-duration: 100ms;
+	transition-timing-function: linear;
+	transition-property: background-color,border-color,color,opacity;
+}

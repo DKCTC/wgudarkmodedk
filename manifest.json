@@ -1,6 +1,6 @@
 {
   "name": "WGU Task Dark Mode by DK",
-  "version": "20200.12.2800",
+  "version": "20200.12.2900",
   "description": "Dark mode for WGU task pages, also makes task header and content text larger",
   "manifest_version": 2,
   "background":{

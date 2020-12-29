@@ -1,118 +1,21 @@
 <html>
 	<head>
+		<link rel="stylesheet" href="/css/menu.css">
 		<script src="/js/req/portCommunications.js"></script>
-		<style>
-			html { height: 150px; }
-			body {
-				height: 120px;
-				margin: 20px;
-			}
-			body > section {
-				display: flex;
-				justify-content: space-evenly;
-				align-items: center;
-				position: relative;
-				text-align: center;
-				margin-bottom: 20px;
-			}
-			body > section > div {
-				display: inline-block;
-				width: 450px;
-				height: 30px;
-			}
-			body > section > img { width: 150px; }
-			body > section > span {
-				display: inline-flex;
-				flex-wrap: wrap;
-				justify-content: center;
-				text-align: center;
-				width: 220px;
-				font-family: arial,sans-serif;
-				text-transform: uppercase;
-				font-size: 18px;
-				font-weight: normal;
-				vertical-align: middle;
-			}
-			body > section > span > span {
-				display: flex;
-				justify-content: center;
-				width: 100%;
-				font-size: 14px;
-				font-weight: bold;
-			}
-			body > section > span > span:last-child {
-				font-weight: normal;
-			}
-			body > section > div > button {
-				display: inline-flex;
-				justify-content: space-evenly;
-				align-items: center;
-				position: relative;
-				width: 190px;
-				height: 35px;
-				font-family: arial,sans-serif;
-				text-transform: uppercase;
-				font-size: 14px;
-				font-weight: normal;
-				background-color: #fff;
-				border: 1px solid #002f51;
-				padding: 0 0.83333em;
-				border-radius: 5px;
-				color: #002f51;
-				-webkit-tap-highlight-color: transparent;
-				cursor: pointer;
-				outline: none;
-				min-height: 2.33333em;
-				line-height: 2.33333em;
-				text-align: center;
-				text-decoration: none;
-			}
-			body > section > div > button:hover { background-color: #fff3db; }
-			body > section > div > button:last-child { margin-left: 15px; }
-			body > section > div > button > span {
-				display: inline-block;
-				position: relative;
-				width: 50px;
-				height: 24px;
-				background-color: #ff0000;
-				border-radius: 50px;
-				pointer-events: none;
-			}
-			body > section > div > button.enabled > span { background-color: #9cd08b; }
-			body > section > div > button > span::after {
-				position: absolute;
-				content: "";
-				height: 24px;
-				width: 25px;
-				left: 0px;
-				bottom: 0px;
-				background-color: #002f51;
-				border-radius: 50%
-			}
-			body > section > div > button.enabled > span::after {
-				-webkit-transform: translateX(25px);
-				transform: translateX(25px);
-			}
-			body.ready > section > div > button > span {
-				-webkit-transition: background-color 100ms linear;
-				transition: background-color 100ms linear;
-			}
-			body.ready > section > div > button > span::after {
-				-webkit-transition: 100ms linear;
-				transition: 100ms linear;
-			}
-		</style>
 		<script src="/js/menu.js"></script>
 	</head>
 	<body>
 		<section>
-			<img src="img/Wgu-Logo-tasks-original.svg">
+			<section>
+				<img src="img/Wgu-Logo-tasks-original.svg">
+				<img class="darkmode" src="img/Wgu-Logo-tasks-dark-mode-white.svg">
+			</section>
 			<span>Task Page<span>Dark Mode and Large Text</span><span>by DK</span></span>
 		</section>
 		<section>
 			<div>
-				<button name="darkmode" title="Click to toggle">Dark Mode<span></span></button>
-				<button name="largefont" title="Click to toggle">Large Text<span></span></button>
+				<button name="darkmode" title="Click to toggle"><span>Dark Mode</span><span></span></button>
+				<button name="largefont" title="Click to toggle"><span>Large Text</span><span></span></button>
 			</div>
 		</section>
 	</body>
