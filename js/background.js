@@ -10,9 +10,10 @@ var _manifest = chrome.runtime.getManifest(),
 	//WGU task page URLs
 	taskURL = {
 		//regexp for checking tab URL on navigation
-		regexp: /^https\:\/\/tasks\.wgu\.edu\/*.*/gi,
+		//\/student\/([0-9]+)\/course\/([0-9]+)\/task
+		regexp: /^https\:\/\/tasks\.wgu\.edu\/([\w]+)\/([0-9]+)\/course\/([0-9]+)\/task.*/gi,
 		//match pattern for querying tabs
-		pattern: 'https://tasks.wgu.edu/*'
+		pattern: 'https://tasks.wgu.edu/*/*/course/*/task/*'
 	},
 	//Chrome 87+ has a removeCSS function which can remove CSS files, much easier for dark mode, otherwise a script is used to add/remove classes to the html container for the CSS file that is included in the manifest
 	canRemoveCSS = !!(typeof(chrome.tabs.removeCSS) == 'function'),

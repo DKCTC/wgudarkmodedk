@@ -1,6 +1,6 @@
 {
   "name": "WGU Task Dark Mode by DK",
-  "version": "20200.12.2900",
+  "version": "20210.1.100",
   "description": "Dark mode for WGU task pages, also makes task header and content text larger",
   "manifest_version": 2,
   "background":{
@@ -20,7 +20,7 @@
   "content_security_policy": "script-src 'self' 'unsafe-eval' https://www.google-analytics.com/; object-src 'self'",
   "content_scripts": [
     {
-      "matches": [ "https://tasks.wgu.edu/*" ],
+      "matches": [ "https://tasks.wgu.edu/*/*/course/*/task/*" ],
       "css": [ "css/wgudark.css" ]
     }
   ],
