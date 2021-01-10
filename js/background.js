@@ -10,7 +10,7 @@ var _manifest = chrome.runtime.getManifest(),
 	//WGU task page URLs
 	taskURL = {
 		//regexp for checking tab URL on navigation
-		//\/student\/([0-9]+)\/course\/([0-9]+)\/task
+		//-targets final task page url and not all of the loading urls
 		regexp: /^https\:\/\/tasks\.wgu\.edu\/([\w]+)\/([0-9]+)\/course\/([0-9]+)\/task.*/gi,
 		//match pattern for querying tabs
 		pattern: 'https://tasks.wgu.edu/*/*/course/*/task/*'
