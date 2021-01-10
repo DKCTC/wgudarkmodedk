@@ -13,8 +13,12 @@
 
  There are context menu (right-click) items for toggling these options as well, but they only appear on WGU task pages (https://tasks.wgu.edu/*).
 
- This will eventually be in the Chrome Web Store. For now, you must download the ZIP and put the contents somewhere and then load it as an unpacked extension in Chrome. Follow the first three steps here: https://developer.chrome.com/docs/extensions/mv3/getstarted/
+ If you want to modify this extension, you must either clone the repo or download the ZIP and put the contents somewhere and then load it as an unpacked extension in Chrome. Follow the first three steps here: https://developer.chrome.com/docs/extensions/mv3/getstarted/
+ 
+ This extension is available on the Chrome Web Store here:
+ 
+ https://chrome.google.com/webstore/detail/pedchmnbfahbcdflnhooakkpadpfdodk
 
- At some point, the styling on the Task pages will change, and this extension will no longer function properly. Please file an issue, but if I am no longer a student, then I will not be able to access any tasks. Hopefully it does not change before the end of 2023.
+ At some point, the styling on the Task pages will change, and this extension will no longer function properly. Please file an issue, but if I am no longer a student, then I will not be able to access any tasks. Hopefully it does not change before the end of 2023. Otherwise, someone else will have to create a fork of this project and fix it!
 
  If anything else is not working, please file an issue. Thanks!
