@@ -36,12 +36,10 @@
     "js/req/*.js"
   ],
   "permissions": [
-    "activeTab",
     "contextMenus",
     "management",
     "storage",
     "tabs",
-    "http://*/",
-    "https://*/"
+    "https://tasks.wgu.edu/*"
   ]
 }
