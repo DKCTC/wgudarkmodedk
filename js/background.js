@@ -189,12 +189,6 @@ chrome.management.get(chrome.runtime.id,function(runData){
 	}//if
 });
 
-//on browseraction click, only toggle darkmode
-//-largefont is in the contextmenu for now because I don't feel like making a browseraction menu
-/*chrome.browserAction.onClicked.addListener(function(activeTab){
-	preToggle(false);
-});//*/
-
 //on tab navigate only for wgu task tabs
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, _tab) {
 	//reset regexp lastIndex so it will actually work

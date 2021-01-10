@@ -1,7 +1,7 @@
 {
-  "name": "WGU Task Dark Mode by DK",
-  "version": "20210.1.100",
-  "description": "Dark mode for WGU task pages, also makes task header and content text larger",
+  "name": "WGU Task Page Dark Mode by DK",
+  "version": "20210.1.900",
+  "description": "Dark mode for Western Governors University task pages, also makes task header and content text larger",
   "manifest_version": 2,
   "background":{
     "scripts": ["js/req/portCommunications.js","js/background.js"]
@@ -14,7 +14,7 @@
   },
   "browser_action": {
     "default_icon": "img/wgu-icon-top.png",
-    "default_title": "WGU Task Dark Mode by DK",
+    "default_title": "WGU Task Page Dark Mode by DK",
     "default_popup": "menu.html"
   },
   "content_security_policy": "script-src 'self' 'unsafe-eval' https://www.google-analytics.com/; object-src 'self'",
@@ -37,24 +37,10 @@
   ],
   "permissions": [
     "activeTab",
-    "clipboardRead",
-    "clipboardWrite",
     "contextMenus",
-    "commands",
-    "cookies",
-    "desktopCapture",
-    "downloads",
-    "history",
     "management",
-    "notifications",
     "storage",
     "tabs",
-    "tts",
-    "webRequest",
-    "webRequestBlocking",
-    "webNavigation",
-    "<all_urls>",
-    "https://apis.google.com/*",
     "http://*/",
     "https://*/"
   ]
