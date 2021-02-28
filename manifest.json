@@ -1,6 +1,6 @@
 {
   "name": "WGU Task Page Dark Mode by DK",
-  "version": "20210.1.900",
+  "version": "20210.2.2800",
   "description": "Dark mode for Western Governors University task pages, also makes task header and content text larger",
   "manifest_version": 2,
   "background":{
@@ -40,6 +40,7 @@
     "management",
     "storage",
     "tabs",
+    "webNavigation",
     "https://tasks.wgu.edu/*"
   ]
 }

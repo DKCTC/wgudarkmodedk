@@ -51,3 +51,23 @@ html .wgu .uploadfilecontainer label.btn {
 html .wgu .uploadfilecontainer label.btn > span {
 	font-size:100%;
 }
+/*move buttons to top row and make text column 100% width*/
+html .wgu div#menu {
+	position: absolute;
+	width: 90%;
+}
+html .wgu div#menu .side-nav-sub:not([hidden]) {
+	display: none;
+}
+html .wgu mat-list.mat-list.mat-list-base.side-nav {
+	display: inline-block !important;
+	width: 100%;
+}
+html .wgu .mat-list.side-nav .mat-list-item {
+	display: inline-block;
+	margin: 0 10px 0 0;
+	width: auto;
+}
+html .wgu div#content {
+	padding-top: 63px;
+}

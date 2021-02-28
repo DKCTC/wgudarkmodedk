@@ -150,3 +150,23 @@ html.dk-large-font .wgu .grid__item .grid span > a {
 html.dk-large-font .wgu .grid__item .grid span > a:hover {
 	color: #999 !important;
 }
+/*move buttons to top row and make text column 100% width*/
+html.dk-large-font .wgu div#menu {
+	position: absolute;
+	width: 90%;
+}
+html.dk-large-font .wgu div#menu .side-nav-sub:not([hidden]) {
+	display: none;
+}
+html.dk-large-font .wgu mat-list.mat-list.mat-list-base.side-nav {
+	display: inline-block !important;
+	width: 100%;
+}
+html.dk-large-font .wgu .mat-list.side-nav .mat-list-item {
+	display: inline-block;
+	margin: 0 10px 0 0;
+	width: auto;
+}
+html.dk-large-font .wgu div#content {
+	padding-top: 63px;
+}

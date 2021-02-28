@@ -2,7 +2,7 @@
 //***** WGU Task Dark Mode and Large Text by DK background.js *****
 //-----------------------------------------------------------------
 //the manifest
-var _manifest = chrome.runtime.getManifest(),
+let _manifest = chrome.runtime.getManifest(),
 	//the incoming port connection
 	connection = new Port(),	
 	//dev mode ext options, if true, dev mode ext reload context menu item will be added
@@ -32,12 +32,17 @@ var _manifest = chrome.runtime.getManifest(),
 		darkmode: false,
 		largefont: false
 	},
-	
+	//tabs obj for storing task tab IDs
+	allTabs = {
+		darkmode: {},
+		largefont: {}
+	},	
 	//debug console logging for dev only
 	//--text = text to log to the concole
 	//--obj = optional object to debug to the console
 	cLog = function(text,obj){
-		if(!!development){
+		if(false){
+		//if(!!development){
 			console.log(text);
 			!!obj && console.debug(obj);
 		}//if
@@ -48,7 +53,7 @@ var _manifest = chrome.runtime.getManifest(),
 	//--font = true if the font option was selected in the contextmenu, false otherwise
 	preToggle = function(font){
 		//flip enabled flag to the opposite for the selected option
-		enabled[(!!font && 'largefont') || 'darkmode'] = !enabled[(!!font && 'largefont') || 'darkmode']
+		enabled[(!!font && 'largefont') || 'darkmode'] = !enabled[(!!font && 'largefont') || 'darkmode'];
 		cLog('=========preToggle font: '+font,enabled);
 		//store the new settings
 		chrome.storage.sync.set({enabled: enabled});//, function(){});
@@ -66,58 +71,92 @@ var _manifest = chrome.runtime.getManifest(),
 	//--taskTabs = tab array of all of the tasks.wgu.edu tabs
 	//--insert = option from enabled object for selected option
 	//--font = true if the font option was selected in the contextmenu, false otherwise
-	executeToggle = function(taskTabs,insert,font){
+	executeToggle = function(taskTabs,insert,font,reset){
 		//the css file to use for the option
-		var file = files[((!!font && 'largefont') || 'darkmode')];
-
-		cLog('-executeToggle insert: '+insert+' | font: '+font+' | file: '+file+' | canRemoveCSS: '+canRemoveCSS+' | taskTabs:',taskTabs);
-
-		//update the selected context menu item text
-		chrome.contextMenus.update(((!!font && 'largefont') || 'darkmode'),{
-			title: ((!!insert && 'Disable') || 'Enable')
-				+' '+((!!font && 'large font size') || 'dark mode')
-		});
+		let type = ((!!font && 'largefont') || 'darkmode'),
+			file = files[type];
+		//tabs has the url in a regex to match against the new url to see if it only has a hash or something in it
+		cLog('>>>>GO executeToggle type: '+type+' | RESET: '+reset+' | insert: '+insert+' | font: '+font+' | file: '+file+' | canRemoveCSS: '+canRemoveCSS+' | taskTabs:',taskTabs);
+		
+		//update the selected context menu item text if this isn't a reset call
+		if(!reset){
+			chrome.contextMenus.update(type,{
+				title: ((!!insert && 'Disable') || 'Enable')
+					+' '+((!!font && 'large font size') || 'dark mode')
+			});
+		}//if
 
 		//go through the tab array and execute the toggle
 		taskTabs.forEach(function(_tab,i){
+			/*cLog('-tab ID: '+_tab.id
+				+' | has allTabs: '+!!allTabs[_tab.id]
+				+' | matches URL: '+(!!allTabs[_tab.id] && !!allTabs[_tab.id].test(_tab.url))
+				+' | tab URL: '+_tab.url);//*/
 			switch(true){
 				//if this is Chrome 87+, use insertCSS and removeCSS and insert/remove specific CSS file
 				case(!!canRemoveCSS):
-					cLog('--executeToggle canRemoveCSS: '+_tab.id);
+					cLog('--executeToggle canRemoveCSS: '+_tab.id+' | '+type);
 					//if the file should be inserted
-					if(!!insert){
-						cLog('---executeToggle insertCSS: '+_tab.id);
-						chrome.tabs.insertCSS(_tab.id,{
-							file:file
-						}, function(){
-							cLog('++++ css inserted');
-						});
-					} else {
-						//else remove it
-						cLog('---executeToggle removeCSS: '+_tab.id);
-						chrome.tabs.removeCSS(_tab.id,{
-							file:file
-						}, function(){
-							cLog('---- css removed');
-						});
-					}//if
+					switch(true){
+						//if this is reset, we are forcing both sheets to be removed
+						case(!!reset):
+							['largefont','darkmode'].forEach((_type)=>{
+								file = files[_type];
+								delete allTabs[_type][_tab.id];
+								cLog('---executeToggle removeCSS RESET: '+_tab.id+' | '+_type);
+								chrome.tabs.removeCSS(_tab.id,{
+									file:file
+								}, function(){
+									cLog('---- css reset: '+_tab.id+' | '+_type);
+								});
+							});//foreach
+						break;
+						case(!!insert):
+							//if the tab has not been stored, then store it and add the stylesheet
+							if(!allTabs[type][_tab.id]){
+								allTabs[type][_tab.id] = new RegExp(_tab.url,'g');
+								cLog('---executeToggle insertCSS: '+_tab.id+' | '+type);
+								chrome.tabs.insertCSS(_tab.id,{
+									file:file
+								}, function(){
+									cLog('++++ css inserted: '+_tab.id+' | '+type);
+								});
+							} else {
+								cLog('==== css already inserted: '+_tab.id);
+							}//if
+						break;
+						default:
+							//else remove it
+							delete allTabs[type][_tab.id];
+							cLog('---executeToggle removeCSS: '+_tab.id+' | '+type);
+							chrome.tabs.removeCSS(_tab.id,{
+								file:file
+							}, function(){
+								cLog('---- css removed: '+_tab.id+' | '+type);
+							});
+						break;
+					}//switch
 				break;
 				//if not Chrome87+ and the script should be executed
 				default:
-					cLog('--executeToggle SCRIPT css toggle: '+_tab.id);
+					cLog('--executeToggle SCRIPT css toggle: '+_tab.id+' | '+type);
 					//execute the script that toggles the classes on the html container
-					chrome.tabs.executeScript(_tab.id, {
-						code:'document.getElementsByTagName("html")[0].classList.'
-							+((!!insert && 'add') || 'remove')+'("'
-								+classes[((!!font && 'largefont') || 'darkmode')]
-							+'");'
-					});
+					//-reset is not necessary here because the class is not re-added and the stylesheet is not added/removed multiple times
+					if(!reset){
+						chrome.tabs.executeScript(_tab.id, {
+							code:'document.getElementsByTagName("html")[0].classList.'
+								+((!!insert && 'add') || 'remove')+'("'
+									+classes[type]
+								+'");'
+						});
+					}
 				break;
 			}//switch
 		});//taskTabs.forEach
 	},//executeToggle
 	//get the sync data on first launch or reload
 	firstLaunch = function(reload){
+		let togglePromise;
 		chrome.storage.sync.get(null,function(items){
 			cLog('-firstLaunch sync.get reload: '+!!reload+' | items:',items);
 			//set the enabled flag to the stored value
@@ -128,10 +167,17 @@ var _manifest = chrome.runtime.getManifest(),
 			//-when the browser is first opened, there probably won't be any tabs, so this will not do anything anyway
 			chrome.tabs.query({url:taskURL.pattern},function(_tabs){
 				cLog('-update|install:',_tabs);
-				//toggle darkmode
-				executeToggle(_tabs,!!enabled.darkmode,false);
-				//toggle largefont
-				executeToggle(_tabs,!!enabled.largefont,true);
+				togglePromise = new Promise((resolve,reject)=>{
+					//first remove the css so that multiple don't end up getting added
+					//-reset removes both stylesheets
+					resolve(executeToggle(_tabs,false,false,true));
+				}).then(()=>{
+					//then toggle to add if enabled
+					//-toggle darkmode
+					executeToggle(_tabs,!!enabled.darkmode,false);
+					//-toggle largefont
+					executeToggle(_tabs,!!enabled.largefont,true);
+				});
 			});//query
 		});//sync get
 	};//firstLaunch
@@ -189,30 +235,42 @@ chrome.management.get(chrome.runtime.id,function(runData){
 	}//if
 });
 
-//on tab navigate only for wgu task tabs
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, _tab) {
+//navigation is about to occur, so reset the allTabs entries
+chrome.webNavigation.onCommitted.addListener(function(obj){
 	//reset regexp lastIndex so it will actually work
 	taskURL.regexp.lastIndex = 0;
 	//if this is a WGU task tab and it's done loading, executeToggle
-	if(!!(taskURL.regexp).test(_tab.url) && changeInfo.status == 'complete'){
-		cLog('=========onUpdatedTab tabId: '+tabId,changeInfo);
-		cLog('-_tab:',_tab);
+	if(!!(taskURL.regexp).test(obj.url)){
+		cLog('>>>>======webNavigation.onCommitted tabId: '+obj.tabId,obj);
+		delete allTabs.darkmode[obj.tabId];
+		delete allTabs.largefont[obj.tabId];
+	}
+});//*/
+
+//this only fires on an actual navigation, not on a historystate link (# anchor, same page nav)
+chrome.webNavigation.onCompleted.addListener(function(obj){
+	//reset regexp lastIndex so it will actually work
+	taskURL.regexp.lastIndex = 0;
+	//if this is a WGU task tab and it's done loading, executeToggle
+	if(!!(taskURL.regexp).test(obj.url)){
+		cLog('>>>>======webNavigation.onCompleted tabId: '+obj.tabId,obj);
 		//toggle darkmode, executeToggle is expecting an array of tabs
-		executeToggle([_tab],!!enabled.darkmode,false);
+		//-only uses the ID and url, so send those in an obj
+		executeToggle([{id:obj.tabId, url: obj.url}],!!enabled.darkmode,false);
 		//toggle largefont
-		executeToggle([_tab],!!enabled.largefont,true);	
-	}//if
+		executeToggle([{id:obj.tabId, url: obj.url}],!!enabled.largefont,true);
+	}
 });
 	
 //after install/update, get enabled value and execute toggle
 //-this might not be necessary because I'm telling it to get the data on launch anyway
-chrome.runtime.onInstalled.addListener(function(details){
+/*chrome.runtime.onInstalled.addListener(function(details){
 	cLog('=========onInstalled:',details);
 	if((/(update|install)/gi).test(details.reason)){
 		//send true because this is a reload, not really used except for logging
-		firstLaunch(true);
+		//firstLaunch(true);
 	}//if
-});
+});//*/
 
-//get the sync data
+//launch on install/update/reload
 firstLaunch();
