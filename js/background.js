@@ -248,7 +248,7 @@ chrome.webNavigation.onCommitted.addListener(function(obj){
 });//*/
 
 //this only fires on an actual navigation, not on a historystate link (# anchor, same page nav)
-chrome.webNavigation.onCompleted.addListener(function(obj){
+chrome.webNavigation.onDOMContentLoaded.addListener(function(obj){ //onCompleted
 	//reset regexp lastIndex so it will actually work
 	taskURL.regexp.lastIndex = 0;
 	//if this is a WGU task tab and it's done loading, executeToggle
